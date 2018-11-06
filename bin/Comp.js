@@ -64,7 +64,7 @@ module.exports = class Comp extends Component {
     const { packageName, onExit } = this.props;
 
     const source = path.resolve(__dirname, '../template');
-    const destination = path.resolve(`./__npm-robbery-template__${new Date().getTime()}`);
+    const destination = path.resolve(`./__npm-robbery-template__${new Date().getTime()}__`);
 
     try {
       // 1. copy
@@ -81,7 +81,7 @@ module.exports = class Comp extends Component {
 
       await this.setStateAsync('ok', `Success register ${packageName}.`);
     } catch (e) {
-      await this.setStateAsync('error', `Fail: ${e.message}`);
+      await this.setStateAsync('error', `Fail: ${e}`);
     } finally {
       // 4. remove
       rimraf.sync(destination);

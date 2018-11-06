@@ -1,12 +1,13 @@
 {
   "name": "npm-robbery",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "npm package name robbery.",
   "bin": {
     "npm-robbery": "bin/index.js"
   },
   "files": [
-    "bin"
+    "bin",
+    "template"
   ],
   "repository": {
     "type": "git",
