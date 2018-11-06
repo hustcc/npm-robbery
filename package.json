@@ -1,0 +1,33 @@
+{
+  "name": "npm-robbery",
+  "version": "0.0.2",
+  "description": "npm package name robbery.",
+  "bin": {
+    "npm-robbery": "bin/index.js"
+  },
+  "files": [
+    "bin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hustcc/npm-robbery.git"
+  },
+  "keywords": [
+    "npm",
+    "package",
+    "robbery"
+  ],
+  "author": "hustcc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hustcc/npm-robbery/issues"
+  },
+  "homepage": "https://github.com/hustcc/npm-robbery#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "commander": "^2.19.0",
+    "ink": "^0.5.1",
+    "ncp": "^2.0.0",
+    "rimraf": "^2.6.2"
+  }
+}
