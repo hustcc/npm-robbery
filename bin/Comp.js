@@ -1,50 +1,8 @@
 const { h, Component, Color } = require('ink');
-const fs = require('fs');
 const path = require('path');
 const rimraf = require('rimraf');
-const ncp = require('ncp').ncp;
-const child_process = require('child_process');
+const helper = require('./helper');
 
-ncp.limit = 128;
-
-const cp = (source, destination) => {
-  return new Promise((resolve, reject) => {
-    ncp(source, destination, err => {
-      if (err) reject(err);
-      setTimeout(() => {
-        resolve(true);
-      }, 500);
-    });
-  });
-};
-
-const update = (destination, packageName) => {
-  return new Promise((resolve, reject) => {
-    const pkg = `${destination}/package.json`;
-
-    fs.readFile(pkg, 'utf8', (err, data) => {
-      if (err) reject(err);
-
-      const json = JSON.parse(data);
-      json.name = packageName;
-      fs.writeFileSync(pkg, JSON.stringify(json, null, 2));
-      setTimeout(() => {
-        resolve(true);
-      }, 500);
-    });
-  });
-};
-
-const publish = destination => {
-  return new Promise((resolve, reject) => {
-    child_process.exec(`npm publish ${destination}`, err => {
-      if (err) reject(err);
-      setTimeout(() => {
-        resolve(true);
-      }, 100);
-    });
-  });
-};
 
 module.exports = class Comp extends Component {
   constructor(props) {
@@ -69,17 +27,18 @@ module.exports = class Comp extends Component {
     try {
       // 1. copy
       await this.setStateAsync('cp', 'Copy template project...');
-      await cp(source, destination);
+      await helper.cp(source, destination);
 
       // 2. update
       await this.setStateAsync('update', 'Update project package name...');
-      await update(destination, packageName);
+      const version = '0.0.1-beta.1';
+      await helper.update(destination, packageName, version);
 
       // 3. npm publish
       await this.setStateAsync('publish', 'Publish to npm...');
-      await publish(destination);
+      await helper.publish(destination);
 
-      await this.setStateAsync('ok', `Success register ${packageName}.`);
+      await this.setStateAsync('ok', `Success register '${packageName}@${version}'.`);
     } catch (e) {
       await this.setStateAsync('error', `Fail: ${e}`);
     } finally {

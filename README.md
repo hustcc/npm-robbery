@@ -10,7 +10,7 @@
 
 ## Install
 
-> npm i -g npm-robbery
+> **npm i -g npm-robbery**
 
 Then get the command tool named `npm-robbery`.
 
@@ -18,9 +18,22 @@ Then get the command tool named `npm-robbery`.
 
 ## Usage
 
-> npm-robbery my-lodash
 
-Then will register package name `my-lodash` with version `0.0.1`.
+```bash
+Usage: npm-robbery <package_name>
+
+Options:
+  -v, --version  output the version number
+  -h, --help     output usage information
+```
+
+For example:
+
+```bash
+npm-robbery my-lodash
+```
+
+Then will register package name `my-lodash` with version `0.0.1-beta.1`.
 
 
 

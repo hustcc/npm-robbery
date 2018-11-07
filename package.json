@@ -1,7 +1,7 @@
 {
   "name": "npm-robbery",
-  "version": "0.0.3",
-  "description": "npm package name robbery.",
+  "version": "0.1.0",
+  "description": "A command tool to register npm package name conveniently.",
   "bin": {
     "npm-robbery": "bin/index.js"
   },

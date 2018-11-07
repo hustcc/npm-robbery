@@ -1,3 +1,3 @@
 module.exports = function() {
-  return 'npm-robbery';
+  return 'created by npm-robbery.';
 };
