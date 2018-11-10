@@ -1,6 +1,6 @@
 # npm-robbery
 
-> A command tool to register npm package name conveniently.
+> A command tool to register npm package name conveniently. 用于辅助快速注册 npm 包名称的命令行工具。
 
 
 [![npm](https://img.shields.io/npm/v/npm-robbery.svg)](https://www.npmjs.com/package/npm-robbery)
