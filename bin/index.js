@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 const { h, render } = require('ink');
 const program = require('commander');
-const pkg = require('../package.json');
+const p = require('../package.json');
 const Comp = require('./Comp');
 
 let unmount;
@@ -14,11 +14,12 @@ const onExit = error => {
 };
 
 program
-  .version(pkg.version, '-v, --version')
-  .arguments('<package_name>')
-  .usage('<package_name>')
-  .action((package_name) => {
-    unmount = render(h(Comp, { packageName: package_name, onExit }));
+  .version(p.version, '-v, --version')
+  .arguments('<pkg>')
+  .usage('<pkg>[@ver]')
+  .action(pkg => {
+    const [ packageName, version ] = pkg.split('@');
+    unmount = render(h(Comp, { packageName, version, onExit }));
   });
 
 program.parse(process.argv);

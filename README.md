@@ -20,7 +20,7 @@ Then get the command tool named `npm-robbery`.
 
 
 ```bash
-Usage: npm-robbery <package_name>
+Usage: npm-robbery <pkg>[@ver]
 
 Options:
   -v, --version  output the version number
@@ -34,6 +34,12 @@ npm-robbery my-lodash
 ```
 
 Then will register package name `my-lodash` with version `0.0.1-beta.1`.
+
+Or
+
+```bash
+npm-robbery my-lodash@0.0.1
+```
 
 
 

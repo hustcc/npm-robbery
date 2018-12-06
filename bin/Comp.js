@@ -19,7 +19,7 @@ module.exports = class Comp extends Component {
   }
 
   async start() {
-    const { packageName, onExit } = this.props;
+    const { packageName, onExit, version = '0.0.1-beta.1' } = this.props;
 
     const source = path.resolve(__dirname, '../template');
     const destination = path.resolve(`./__npm-robbery-template__${new Date().getTime()}__`);
@@ -31,7 +31,6 @@ module.exports = class Comp extends Component {
 
       // 2. update
       await this.setStateAsync('update', 'Update project package name...');
-      const version = '0.0.1-beta.1';
       await helper.update(destination, packageName, version);
 
       // 3. npm publish
