@@ -1,4 +1,5 @@
 const { h, Component, Color } = require('ink');
+const os = require('os');
 const path = require('path');
 const rimraf = require('rimraf');
 const helper = require('./helper');
@@ -22,7 +23,7 @@ module.exports = class Comp extends Component {
     const { packageName, onExit, version = '0.0.1-beta.1' } = this.props;
 
     const source = path.resolve(__dirname, '../template');
-    const destination = path.resolve(`./__npm-robbery-template__${new Date().getTime()}__`);
+    const destination = os.tmpdir();
 
     try {
       // 1. copy

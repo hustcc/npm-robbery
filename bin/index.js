@@ -3,6 +3,7 @@ const { h, render } = require('ink');
 const program = require('commander');
 const p = require('../package.json');
 const Comp = require('./Comp');
+const ver = require('./ver');
 
 let unmount;
 
@@ -18,7 +19,7 @@ program
   .arguments('<pkg>')
   .usage('<pkg>[@ver]')
   .action(pkg => {
-    const [ packageName, version ] = pkg.split('@');
+    const [ packageName, version ] = ver.parsePkgVer(pkg);
     unmount = render(h(Comp, { packageName, version, onExit }));
   });
 
