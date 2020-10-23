@@ -2,6 +2,7 @@ const { h, Component, Color } = require('ink');
 const os = require('os');
 const path = require('path');
 const rimraf = require('rimraf');
+const npmName = require('npm-name');
 const helper = require('./helper');
 
 
@@ -21,6 +22,13 @@ module.exports = class Comp extends Component {
 
   async start() {
     const { packageName, onExit, version = '0.0.1-beta.1' } = this.props;
+    const isPackageNameAvailable = await npmName(packageName);
+
+    if (!isPackageNameAvailable) {
+      await this.setStateAsync('error', `Package name ${packageName} is unavailable on npm`)
+      return onExit(1) 
+    }
+
 
     const source = path.resolve(__dirname, '../template');
     const destination = os.tmpdir();
